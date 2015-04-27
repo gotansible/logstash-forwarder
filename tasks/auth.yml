@@ -1,0 +1,15 @@
+
+- name:  Auth - create key root folder
+  file:
+    path: "{{ logstash_ssl_dir }}"
+    state: directory
+
+- name: Auth - copy cert
+  copy:
+    src={{ logstash_local_ssl_cert_file }}
+    dest={{ logstash_ssl_dir }}/logstash.crt
+    mode=0644
+    owner=logstash_forwarder_user
+    group=logstash_forwarder_group
+  notify: restart logstash-forwarder
+

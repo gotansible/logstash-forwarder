@@ -1,0 +1,15 @@
+---
+- name: CentOS - Add Elasticsearch key
+  rpm_key:
+    key: http://packages.elasticsearch.org/GPG-KEY-elasticsearch
+    state: present
+
+- name: CentOS - Add logstash-forwarder yum config 
+  copy:
+    src: logstashforwarder.repo
+    dest: /etc/yum.repos.d/logstashforwarder.repo
+    mode: 0644
+
+- name: CentOS - Install logstash-forwarder.
+  yum: pkg=logstash-forwarder state=installed update_cache=yes enablerepo=logstash-forwarder
+

@@ -1,0 +1,20 @@
+---
+- name: Config - create directories
+  file:
+    state=directory
+    path={{ item }}
+    owner={{ logstash_forwarder_user }}
+    group={{ logstash_forwarder_group }}
+  with_items:
+    - "/etc/logstash-forwarder"
+    - "/var/log/logstash-forwarder"
+
+- name: Config - logstash-forwarder
+  template:
+    src=logstash-forwarder.j2
+    dest=/etc/logstash-forwarder/logstash-forwarder
+    owner={{ logstash_forwarder_user }}
+    group={{ logstash_forwarder_group }}
+    mode=0644
+  notify: restart logstash-forwarder
+

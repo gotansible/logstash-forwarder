@@ -1,0 +1,33 @@
+---
+- name: logstash forwarder - install debian
+  include: install_debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: logstash forwarder - install centos
+  include: install_centos.yml
+  when: ansible_os_family == "RedHat"
+
+- name: logstash forwarder - create group
+  group:
+    name={{logstash_forwarder_group}}
+    state=present
+
+- name: logstash forwarder - create user
+  user:
+    name={{logstash_forwarder_user}}
+    group={{logstash_forwarder_group}}
+
+- name: logstash forwarder - configure
+  include: config.yml
+
+- name: logstash forwarder - auth
+  include: auth.yml
+
+- name: logstash forwarder - service
+  include: runit_service.yml
+  vars:
+    service_name: logstash-forwarder
+    service_user: "{{logstash_forwarder_user}}"
+    service_group: "{{logstash_forwarder_group}}"
+    service_command: /opt/logstash-forwarder/bin/logstash-forwarder -config /etc/logstash-forwarder -spool-size 100 
+    service_env_vars: {}
