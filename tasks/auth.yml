@@ -9,7 +9,7 @@
     src={{ logstash_local_ssl_cert_file }}
     dest={{ logstash_ssl_dir }}/logstash.crt
     mode=0644
-    owner=logstash_forwarder_user
-    group=logstash_forwarder_group
+    owner={{logstash_forwarder_user}}
+    group={{logstash_forwarder_group}}
   notify: restart logstash-forwarder
 
