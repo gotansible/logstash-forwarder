@@ -8,7 +8,6 @@
 # service_name
 # service_command (/usr/local/bin/myservice -config /etc/myservice/config
 # service_user
-# service_group
 #
 # Optional:
 # service_env_vars - Key Value Hash
