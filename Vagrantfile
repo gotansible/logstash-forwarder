@@ -11,7 +11,20 @@ Vagrant.configure(2) do |config|
 		server.vm.box = "hashicorp/precise64"
 		server.vm.hostname = "server"
 		server.vm.provision :ansible do |ansible|
+			ansible.playbook = "../logstash/test.yml"
+		end
+		server.vm.network "private_network", ip: "192.168.50.9"
+	end
+
+	config.vm.define "client" do |client|
+		client.vm.box = "hashicorp/precise64"
+		client.vm.hostname = "client"
+		client.vm.provision :ansible do |ansible|
 			ansible.playbook = "test.yml"
+			ansible.extra_vars = {
+				logstash_forwarder_logstash_server: "192.168.50.9",
+				logstash_forwarder_logstash_server_port: "12345"
+			}
 		end
 	end
 
