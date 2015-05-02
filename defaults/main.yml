@@ -1,11 +1,17 @@
 logstash_forwarder_user: logstash-forwarder
 logstash_forwarder_group: logstash-forwarder
 
-logstash_forwarder_logstash_server: "localhost"
-logstash_forwarder_logstash_server_port: 12345
+logstash_forwarder_servers:
+  - 127.0.0.1:12345
 
-logstash_ssl_dir: /etc/pki/logstash
-logstash_local_ssl_cert_file: myssl.crt
+logstash_forwarder_cert: /etc/pki/selfsign/certs/logstash.crt
+logstash_forwarder_key: /etc/pki/selfsign/private/logstash.key
+logstash_forwarder_ca: /etc/pki/selfsign/CA/selfsignCA.pem
+
+logstash_forwarder_sll_copy_local: false
+logstash_forwarder_local_cert: /path/to/copy
+logstash_forwarder_local_key: /path/to/copy
+logstash_forwarder_local_ca: /path/to/copy
 
 logstash_forwarder_files:
   - paths:

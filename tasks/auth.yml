@@ -1,15 +1,45 @@
 
-- name:  Auth - create key root folder
+- name: ensure /etc/pki directory
   file:
-    path: "{{ logstash_ssl_dir }}"
-    state: directory
+    path=/etc/pki
+    state=directory
 
 - name: Auth - copy cert
   copy:
-    src={{ logstash_local_ssl_cert_file }}
-    dest={{ logstash_ssl_dir }}/logstash.crt
+    src={{ logstash_forwarder_local_cert }}
+    dest={{ logstash_forwarder_cert }}
     mode=0644
-    owner={{logstash_forwarder_user}}
-    group={{logstash_forwarder_group}}
+    owner={{ logstash_forwarder_user }}
+    group={{ logstash_forwarder_user }}
+  notify: restart logstash-forwarder
+  when: logstash_forwarder_sll_copy_local
+
+- name: Auth - copy ca
+  copy:
+    src={{ logstash_forwarder_local_ca }}
+    dest={{ logstash_forwarder_ca }}
+    mode=0644
+    owner={{ logstash_forwarder_user }}
+    group={{ logstash_forwarder_user }}
+  notify: restart logstash-forwarder
+  when: logstash_forwarder_sll_copy_local
+
+- name: Auth - copy private key
+  copy:
+    src={{ logstash_forwarder_local_key }}
+    dest={{ logstash_forwarder_key }}
+    mode=0600
+    owner={{ logstash_forwarder_user }}
+    group={{ logstash_forwarder_user }}
+  notify: restart logstash-forwarder
+  when: logstash_forwarder_sll_copy_local
+
+- name: ensure rights to private key
+  file:
+    path={{ logstash_forwarder_key }}
+    state=file
+    mode=0600
+    owner={{ logstash_forwarder_user }}
+    group={{ logstash_forwarder_user }}
   notify: restart logstash-forwarder
 

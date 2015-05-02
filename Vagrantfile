@@ -11,9 +11,11 @@ Vagrant.configure(2) do |config|
 		server.vm.box = "hashicorp/precise64"
 		server.vm.hostname = "server"
 		server.vm.provision :ansible do |ansible|
-			ansible.playbook = "../logstash/test.yml"
+			ansible.playbook = "test-server.yml"
 		end
 		server.vm.network "private_network", ip: "192.168.50.9"
+		# supposedly enables chmod on a synced folder
+		server.vm.synced_folder "keygen", "/etc/pki/selfsign", type: :nfs, map_uid: 0, map_gid: 0
 	end
 
 	config.vm.define "client" do |client|
@@ -22,10 +24,8 @@ Vagrant.configure(2) do |config|
 		client.vm.provision :ansible do |ansible|
 			ansible.playbook = "test.yml"
 			ansible.extra_vars = {
-				logstash_forwarder_logstash_server: "192.168.50.9",
-				logstash_forwarder_logstash_server_port: "12345"
 			}
 		end
+		client.vm.network "private_network", ip: "192.168.50.20"
 	end
-
 end

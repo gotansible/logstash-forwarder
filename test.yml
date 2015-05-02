@@ -2,10 +2,17 @@
 - hosts: all
   sudo: true
   vars:
-    #logstash_forwarder_logstash_server: ""
-    #logstash_forwarder_logstash_server_port:12345
-    logstash_forwarder_ssl_certificate_file: myssl.crt
-    logstash_forwarder_ssl_key_file: myssl.key
+    logstash_forwarder_cert: /etc/pki/logstash.crt
+    logstash_forwarder_key: /etc/pki/logstash.key
+    logstash_forwarder_ca: /etc/pki/selfsignCA.pem
+
+    logstash_forwarder_sll_copy_local: true
+    logstash_forwarder_local_cert: keygen/certs/logstash.crt
+    logstash_forwarder_local_key: keygen/private/logstash.key
+    logstash_forwarder_local_ca: keygen/CA/selfsignCA.pem
+
+    logstash_forwarder_servers:
+      - 192.168.50.9:12345
 
   roles:
     - {role: logstash-forwarder }

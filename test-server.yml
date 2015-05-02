@@ -1,0 +1,19 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    logstash_selfsign: true
+    selfsign_folder: /etc/pki/selfsign
+    selfsign_next_cert_name: logstash
+      
+    logstash_sll_copy_local: true
+    logstash_local_cert: keygen/certs/logstash.crt
+    logstash_local_key: keygen/private/logstash.key
+
+    logstash_cert: "/etc/logstash/logstash.crt"
+    logstash_key: "/etc/logstash/logstash.key"
+
+  roles:
+    - {role: logstash }
+
+

@@ -28,5 +28,6 @@
   vars:
     service_name: logstash-forwarder
     service_user: "{{logstash_forwarder_user}}"
+    service_group: adm
     service_command: /opt/logstash-forwarder/bin/logstash-forwarder -config /etc/logstash-forwarder -spool-size 100 
     service_env_vars: {}
