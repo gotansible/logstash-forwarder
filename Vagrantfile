@@ -14,8 +14,11 @@ Vagrant.configure(2) do |config|
 			ansible.playbook = "test-server.yml"
 		end
 		server.vm.network "private_network", ip: "192.168.50.9"
-		# supposedly enables chmod on a synced folder
-		server.vm.synced_folder "keygen", "/etc/pki/selfsign", type: :nfs, map_uid: 0, map_gid: 0
+		server.vm.synced_folder "keygen", "/etc/pki/selfsign"
+
+		# supposedly enables chmod on a synced folder, however requires 
+		# vagrant to ask you for sudo permissions
+		#, type: :nfs, map_uid: 0, map_gid: 0
 	end
 
 	config.vm.define "client" do |client|
