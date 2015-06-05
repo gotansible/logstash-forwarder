@@ -24,7 +24,7 @@
   include: auth.yml
 
 - name: logstash forwarder - service
-  include: runit_service.yml
+  include: service.yml
   vars:
     service_name: logstash-forwarder
     service_user: "{{logstash_forwarder_user}}"

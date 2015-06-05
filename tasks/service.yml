@@ -1,0 +1,14 @@
+---
+
+- name: service - setup and run
+  runit:
+    name: logstash-forwarder
+    enabled: yes
+    state: up
+    timeout: 10
+    user: "{{ logstash_forwarder_user }}"
+    group: adm
+    command: /opt/logstash-forwarder/bin/logstash-forwarder -config /etc/logstash-forwarder -spool-size 100
+    env_vars: {}
+  register: logstash_forwarder_service_status
+

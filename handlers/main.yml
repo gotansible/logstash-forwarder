@@ -1,3 +1,6 @@
 ---
+
 - name: restart logstash-forwarder
-  runit: name=logstash-forwarder state=restarted
+  runit: name=logstash-forwarder state=up timeout=9 action=restart
+  when: not logstash_forwarder_service_status.restarted
+
