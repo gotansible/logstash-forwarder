@@ -1,8 +1,9 @@
 logstash_forwarder_user: logstash-forwarder
 logstash_forwarder_group: logstash-forwarder
+logstash_forwarder_port: 12345
 
 logstash_forwarder_servers:
-  - 127.0.0.1:12345
+  - 127.0.0.1
 
 logstash_forwarder_cert: /etc/pki/selfsign/certs/logstash.crt
 logstash_forwarder_key: /etc/pki/selfsign/private/logstash.key

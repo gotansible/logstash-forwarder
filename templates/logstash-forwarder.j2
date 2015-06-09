@@ -2,7 +2,7 @@
 	"network": {
 		"servers": [
 		{% for server in logstash_forwarder_servers -%}
-			"{{ server }}"{% if not loop.first %},{% endif %}
+			"{{ server }}:{{logstash_forwarder_port}}"{% if not loop.first %},{% endif %}
 		{%- endfor %}
 ],
 		"ssl certificate": "{{ logstash_forwarder_cert }}",

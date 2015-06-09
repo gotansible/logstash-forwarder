@@ -10,9 +10,10 @@
     logstash_forwarder_local_cert: keygen/certs/logstash.crt
     logstash_forwarder_local_key: keygen/private/logstash.key
     logstash_forwarder_local_ca: keygen/CA/selfsignCA.pem
+    logstash_forwarder_port: 12345
 
     logstash_forwarder_servers:
-      - 192.168.50.9:12345
+      - 192.168.50.9
 
   roles:
     - {role: logstash-forwarder }
