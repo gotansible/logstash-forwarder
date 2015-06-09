@@ -1,10 +1,10 @@
 
-- name: ensure /etc/pki directory
+- name: auth - ensure cert directory
   file:
-    path=/etc/pki
+    path={{ logstash_forwarder_cert | dirname }}
     state=directory
 
-- name: Auth - copy cert
+- name: auth - copy cert
   copy:
     src={{ logstash_forwarder_local_cert }}
     dest={{ logstash_forwarder_cert }}
@@ -14,7 +14,12 @@
   notify: restart logstash-forwarder
   when: logstash_forwarder_sll_copy_local
 
-- name: Auth - copy ca
+- name: auth - ensure CA directory
+  file:
+    path={{ logstash_forwarder_ca | dirname }}
+    state=directory
+
+- name: auth - copy ca
   copy:
     src={{ logstash_forwarder_local_ca }}
     dest={{ logstash_forwarder_ca }}
@@ -24,7 +29,12 @@
   notify: restart logstash-forwarder
   when: logstash_forwarder_sll_copy_local
 
-- name: Auth - copy private key
+- name: auth - ensure private key directory
+  file:
+    path={{ logstash_forwarder_key | dirname }}
+    state=directory
+
+- name: auth - copy private key
   copy:
     src={{ logstash_forwarder_local_key }}
     dest={{ logstash_forwarder_key }}
