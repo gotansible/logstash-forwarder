@@ -1,5 +1,5 @@
 logstash_forwarder_user: logstash-forwarder
-logstash_forwarder_group: logstash-forwarder
+logstash_forwarder_group: adm
 logstash_forwarder_port: 12345
 
 logstash_forwarder_servers:
