@@ -1,4 +1,12 @@
 ---
+
+- name: config - clean
+  file:
+    state=absent
+    path=/etc/logstash-forwarder
+  tags:
+    - clean
+
 - name: Config - create directories
   file:
     state=directory
