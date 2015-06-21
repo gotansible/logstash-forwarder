@@ -19,12 +19,16 @@
 
 - name: logstash forwarder - configure
   include: config.yml
+  tags:
+    - config 
 
 - name: logstash forwarder - auth
   include: auth.yml
 
 - name: logstash forwarder - service
   include: service.yml
+  tags: 
+    - service
   vars:
     service_name: logstash-forwarder
     service_user: "{{logstash_forwarder_user}}"
