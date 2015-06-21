@@ -1,12 +1,5 @@
 ---
 
-- name: config - clean
-  file:
-    state=absent
-    path=/etc/logstash-forwarder
-  tags:
-    - clean
-
 - name: Config - create directories
   file:
     state=directory
@@ -26,10 +19,10 @@
     mode=0644
   notify: restart logstash-forwarder
 
-- name: Config - config
+- name: Config - watch system files
   template:
     src=watch-files.json.j2
-    dest=/etc/logstash-forwarder/{{ logstash_from_play }}.json
+    dest=/etc/logstash-forwarder/system.json
     owner={{ logstash_forwarder_user }}
     group={{ logstash_forwarder_group }}
     mode=0644
