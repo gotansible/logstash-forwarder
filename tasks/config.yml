@@ -12,6 +12,15 @@
 - name: Config - logstash-forwarder
   template:
     src=logstash-forwarder.json.j2
+    dest=/etc/logstash-forwarder/logstash-forwarder.json
+    owner={{ logstash_forwarder_user }}
+    group={{ logstash_forwarder_group }}
+    mode=0644
+  notify: restart logstash-forwarder
+
+- name: Config - config
+  template:
+    src=watch_files.json.j2
     dest=/etc/logstash-forwarder/{{ logstash_from_play }}.json
     owner={{ logstash_forwarder_user }}
     group={{ logstash_forwarder_group }}
