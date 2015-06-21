@@ -1,10 +1,11 @@
+#jinja2: trim_blocks: True, lstrip_blocks: True
 {
 	"network": {
 		"servers": [
 		{% for server in logstash_forwarder_servers -%}
 			"{{ server }}:{{logstash_forwarder_port}}"{% if not loop.first %},{% endif %}
 		{%- endfor %}
-],
+		],
 		"ssl certificate": "{{ logstash_forwarder_cert }}",
 		"ssl key": "{{ logstash_forwarder_key }}",
 		"ssl ca": "{{ logstash_forwarder_ca }}",

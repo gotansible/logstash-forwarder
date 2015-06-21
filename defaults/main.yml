@@ -14,10 +14,11 @@ logstash_forwarder_local_cert: /path/to/copy
 logstash_forwarder_local_key: /path/to/copy
 logstash_forwarder_local_ca: /path/to/copy
 
+logstash_from_play: general
+
 logstash_forwarder_files:
   - paths:
-      - /var/log/messages
-      - /var/log/auth.log
+      - /var/log/syslog
     fields:
       type: syslog
 
