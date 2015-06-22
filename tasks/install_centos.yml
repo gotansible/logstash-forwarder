@@ -6,7 +6,7 @@
 
 - name: CentOS - Add logstash-forwarder yum config 
   copy:
-    src: logstashforwarder.repo
+  src: logstash-forwarder.repo
     dest: /etc/yum.repos.d/logstashforwarder.repo
     mode: 0644
 
