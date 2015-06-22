@@ -1,5 +1,5 @@
-[logstashforwarder]
-name=logstashforwarder repository
+[logstash-forwarder]
+name=logstash-forwarder repository
 baseurl=http://packages.elasticsearch.org/logstashforwarder/centos
 gpgcheck=1
 gpgkey=http://packages.elasticsearch.org/GPG-KEY-elasticsearch

@@ -22,7 +22,8 @@ Vagrant.configure(2) do |config|
 	end
 
 	config.vm.define "client" do |client|
-		client.vm.box = "hashicorp/precise64"
+		#client.vm.box = "hashicorp/precise64"
+		client.vm.box = "chef/centos-6.5"
 		client.vm.hostname = "client"
 		client.vm.provision :ansible do |ansible|
 			ansible.playbook = "test.yml"
