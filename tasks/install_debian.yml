@@ -10,7 +10,11 @@
     state: present
 
 - name: Debian - Install logstash-forwarder
-  apt: pkg=logstash-forwarder state=present update_cache=yes
+  apt:
+    pkg=logstash-forwarder
+    state=present
+    update_cache=yes
+    cache_valid_time=3600
 
 - name: Debian - Use adm group to enable rights to /var/log
   user:

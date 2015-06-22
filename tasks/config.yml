@@ -1,4 +1,13 @@
 ---
+- name: logstash forwarder - create group
+  group:
+    name={{logstash_forwarder_group}}
+    state=present
+
+- name: logstash forwarder - create user
+  user:
+    name={{logstash_forwarder_user}}
+    group={{logstash_forwarder_group}}
 
 - name: Config - create directories
   file:
