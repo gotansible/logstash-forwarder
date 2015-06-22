@@ -14,7 +14,7 @@ logstash_forwarder_local_cert: /path/to/copy
 logstash_forwarder_local_key: /path/to/copy
 logstash_forwarder_local_ca: /path/to/copy
 
-logstash_from_play: general
+logstash_from_play: watch
 
 logstash_forwarder_files:
   - paths:
