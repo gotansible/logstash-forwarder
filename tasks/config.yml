@@ -28,3 +28,10 @@
     mode=0644
   notify: restart logstash-forwarder
 
+- name: Config - remove watch files
+  file:
+    state=absent
+    path=/etc/logstash-forwarder/{{ logstash_from_play }}.json
+  with_items: "{{ logstash_forwarder_files_remove }}"
+  notify: restart logstash-forwarder
+

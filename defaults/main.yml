@@ -22,3 +22,4 @@ logstash_forwarder_files:
     fields:
       type: syslog
 
+logstash_forwarder_files_remove: []
