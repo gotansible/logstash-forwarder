@@ -1,3 +1,48 @@
 ---
 dependencies:
   - { role : gotansible.runit }
+
+galaxy_info:
+  author: Franklin Wise
+  description: A role to install logstash-forwarder
+  company: 
+  license: MIT
+  min_ansible_version: 1.8
+  platforms:
+  - name: EL
+    versions:
+    - 6
+    - 7
+  #- name: Fedora
+  #  versions:
+  #  - all
+  #  - 16
+  #  - 17
+  #  - 18
+  #  - 19
+  #  - 20
+  - name: Amazon
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - precise
+    - saucy
+    - trusty
+  - name: Debian
+    versions:
+    - squeeze
+    - wheezy
+    - jessie
+  categories:
+  #- cloud
+  #- cloud:ec2
+  #- cloud:gce
+  #- cloud:rax
+  #- clustering
+  #- development
+  - monitoring
+  #- networking
+  #- packaging
+  - system
+  - web
