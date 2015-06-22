@@ -15,6 +15,5 @@
 - name: Debian - Use adm group to enable rights to /var/log
   user:
     name={{ logstash_forwarder_user }}
-    group={{ logstash_forwarder_group }}
     groups=adm
 
