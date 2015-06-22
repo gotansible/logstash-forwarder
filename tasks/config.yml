@@ -1,13 +1,5 @@
 ---
 
-- name: config - set owner of logstash
-  file:
-    state=directory
-    path=/opt/logstash-forwarder/bin
-    recurse=yes
-    owner={{ logstash_forwarder_user }}
-    group={{ logstash_forwarder_group }}
-
 - name: Config - create directories
   file:
     state=directory
