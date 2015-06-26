@@ -7,7 +7,7 @@
     state: start
     timeout: 10
     user: "{{ logstash_forwarder_user }}"
-    command: /opt/logstash-forwarder/bin/logstash-forwarder -config /etc/logstash-forwarder -spool-size 100
+    command: /opt/logstash-forwarder/bin/logstash-forwarder -config /etc/logstash-forwarder/ -spool-size {{ logstash_spool_size }}
     env_vars: {}
   register: logstash_forwarder_service_status
 
